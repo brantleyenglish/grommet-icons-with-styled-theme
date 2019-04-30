@@ -1,18 +1,26 @@
 import React from "react";
 import { Grommet } from "grommet";
+import {createGlobalStyle, ThemeProvider} from 'styled-components';
 
 // components
 import Home from "./Home";
-import theme from "./theme";
+import theme, {palette} from "./theme";
+
+const GlobalStyle = createGlobalStyle`
+  p {
+    color: grey;
+  }
+`;
 
 function App() {
   return (
     <div className="App">
-      {/* // add global SASS wrapper. Maybe a Styled-Components <ThemeProvider/> here? */}
-      <Grommet theme={theme}>
-        <Home />
-      </Grommet>
-      {/* // END SASS Wrapper */}
+        <Grommet theme={theme}>
+      <ThemeProvider theme={palette}>
+          <Home />
+      </ThemeProvider>
+        </Grommet>
+      <GlobalStyle />
     </div>
   );
 }
